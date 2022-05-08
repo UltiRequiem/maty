@@ -1,1 +1,1 @@
-export * from "./pmc.ts";
+export * from "./src/pmc/pmc.ts";
