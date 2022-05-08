@@ -1,3 +1,6 @@
+/**
+ * Greatest common divisor
+ */
 export function gcd(x: number, y: number) {
   while (y) {
     const temp = x;
@@ -8,8 +11,15 @@ export function gcd(x: number, y: number) {
   return x;
 }
 
+/**
+ * Least Common Multiple
+ */
 export function lcm(x: number, y: number) {
   return (x * y) / gcd(x, y);
+}
+
+export function isInt(value: unknown): value is number {
+  return typeof value === "number" && value % 1 === 0;
 }
 
 export function round(decimal: number, places = 2) {
@@ -17,43 +27,14 @@ export function round(decimal: number, places = 2) {
   return Math.round(decimal * pow) / pow;
 }
 
-export const GREEK_LETTERS = [
-  "alpha",
-  "beta",
-  "gamma",
-  "Gamma",
-  "delta",
-  "Delta",
-  "epsilon",
-  "varepsilon",
-  "zeta",
-  "eta",
-  "theta",
-  "vartheta",
-  "Theta",
-  "iota",
-  "kappa",
-  "lambda",
-  "Lambda",
-  "mu",
-  "nu",
-  "xi",
-  "Xi",
-  "pi",
-  "Pi",
-  "rho",
-  "varrho",
-  "sigma",
-  "Sigma",
-  "tau",
-  "upsilon",
-  "Upsilon",
-  "phi",
-  "varphi",
-  "Phi",
-  "chi",
-  "psi",
-  "Psi",
-  "omega",
-  "Omega",
-];
+export function isAlpha(c: string) {
+  return (c >= "a" && c <= "z") || (c >= "A" && c <= "Z");
+}
+
+export function isDigit(c: string) {
+  return c >= "0" && c <= "9";
+}
+
+export function isAlphaNum(c: string) {
+  return isAlpha(c) || isDigit(c);
+}
