@@ -86,7 +86,7 @@ export class Fraction {
     return simplify ? copy.reduce() : copy;
   }
 
-  substract(fraction: Fraction | number, simplify = true) {
+  subtract(fraction: Fraction | number, simplify = true) {
     const copy = this.copy();
 
     if (fraction instanceof Fraction) {
@@ -117,7 +117,7 @@ export class Fraction {
       throw new TypeError(`Multiplier must be of type Fraction or Integer.`);
     }
 
-    var copy = this.copy();
+    const copy = this.copy();
 
     copy.numerator *= a;
     copy.denominator *= b;
@@ -160,6 +160,15 @@ export class Fraction {
     }
 
     return simplify ? copy.reduce() : copy;
+  }
+
+  abs() {
+    const copy = this.copy();
+
+    copy.numerator = Math.abs(copy.numerator);
+    copy.denominator = Math.abs(copy.denominator);
+
+    return copy;
   }
 
   valueOf() {

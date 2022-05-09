@@ -90,7 +90,7 @@ export class Lexer {
   }
 
   private processDigits(position: number) {
-    var endpos = position;
+    let endpos = position;
 
     if (!this.content) {
       throw new Error("No buffer to process from.");
