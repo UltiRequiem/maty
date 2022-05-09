@@ -1,4 +1,4 @@
-import { GREEK_LETTERS } from "../_consts.ts";
+import { GREEK_LETTERS } from "../consts.ts";
 
 export class Variable {
   degree: number;
@@ -38,7 +38,7 @@ export class Variable {
   toTex() {
     let { variable, degree } = this;
 
-    if (GREEK_LETTERS.indexOf(variable) > -1) {
+    if (GREEK_LETTERS.includes(variable)) {
       variable = `\\ ${variable}`;
     }
 

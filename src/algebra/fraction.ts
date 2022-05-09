@@ -1,11 +1,11 @@
-import { gcd, isInt, lcm } from "./_utils.ts";
+import { gcd, lcm } from "../utils/mod.ts";
 
 export class Fraction {
   numerator: number;
   denominator: number;
 
   constructor(a: number, b: number) {
-    if (!isInt(a) || !isInt(b)) {
+    if (typeof a !== "number" || typeof b !== "number") {
       throw new Error("Fraction must be created with integers");
     }
 
@@ -57,7 +57,7 @@ export class Fraction {
     if (fraction instanceof Fraction) {
       a = fraction.numerator;
       b = fraction.denominator;
-    } else if (isInt(fraction)) {
+    } else if (typeof fraction === "number") {
       a = fraction;
       b = 1;
     } else {
@@ -94,7 +94,7 @@ export class Fraction {
         new Fraction(-fraction.numerator, fraction.denominator),
         simplify,
       );
-    } else if (isInt(fraction)) {
+    } else if (typeof fraction === "number") {
       return copy.add(new Fraction(-fraction, 1), simplify);
     }
 
@@ -107,7 +107,7 @@ export class Fraction {
     if (fraction instanceof Fraction) {
       a = fraction.numerator;
       b = fraction.denominator;
-    } else if (isInt(fraction) && fraction) {
+    } else if (typeof fraction === "number" && fraction > 0) {
       a = fraction;
       b = 1;
     } else if (fraction === 0) {
@@ -137,7 +137,7 @@ export class Fraction {
         new Fraction(fraction.denominator, fraction.numerator),
         simplify,
       );
-    } else if (isInt(fraction)) {
+    } else if (typeof fraction === "number") {
       return copy.multiply(new Fraction(1, fraction), simplify);
     }
 
@@ -211,7 +211,7 @@ export class Fraction {
     } else if (root === "cbrt") {
       checker = Math.cbrt;
     } else {
-      throw new Error("Internal Error");
+      throw new Error("Only sqrt and cbrt are supported.");
     }
 
     if (this.valueOf() === 0) {
@@ -221,6 +221,6 @@ export class Fraction {
     const sqrtNumer = checker(this.numerator);
     const sqrtDenom = checker(this.denominator);
 
-    return isInt(sqrtNumer) && isInt(sqrtDenom);
+    return typeof sqrtNumer === "number" && typeof sqrtDenom === "number";
   }
 }
