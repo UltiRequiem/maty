@@ -195,7 +195,7 @@ export class Fraction {
     }
   }
 
-  toText() {
+  toTex() {
     try {
       return this.text();
     } catch {

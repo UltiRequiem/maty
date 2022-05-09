@@ -1,9 +1,7 @@
-/**
- * Greatest common divisor
- */
-export function gcd(x: number, y: number) {
+function _gcd(x: number, y: number) {
   while (y) {
     const temp = x;
+
     x = y;
     y = temp % y;
   }
@@ -12,14 +10,35 @@ export function gcd(x: number, y: number) {
 }
 
 /**
- * Least Common Multiple
+ * Greatest common divisor
+ *
+ * Example: gcd(12, 18) => 6
+ *
+ *  Reference {@link https://wikipedia.org/wiki/Greatest_common_divisor}
+ */
+export function gcd(...numbers: number[]) {
+  let [result] = numbers;
+
+  for (const number of numbers) {
+    result = _gcd(number, result);
+  }
+
+  return result;
+}
+
+/**
+ * Smallest Common Multiple
+ *
+ * Example: lcm(2, 3) => 6
+ *
+ * Reference {@link https://wikipedia.org/wiki/Least_common_multiple}
  */
 export function lcm(x: number, y: number) {
   return (x * y) / gcd(x, y);
 }
 
 export function isInt(value: unknown): value is number {
-  return typeof value === "number" && value % 1 === 0;
+  return typeof value === "number";
 }
 
 export function round(decimal: number, places = 2) {
