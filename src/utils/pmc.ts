@@ -5,7 +5,7 @@
  *
  * Example: 10 ->[[1, 10], [2, 5]]
  */
-export function pmc(expected: number) {
+export function pmc(expected: number, options = { clean: true }) {
   const gives: [number, number][] = [];
 
   for (let i = 0; i < expected; i++) {
@@ -22,8 +22,10 @@ export function pmc(expected: number) {
 
       const sorted = [i, j].sort() as [number, number];
 
-      if (gives.some(([a, b]) => a === sorted[0] && b === sorted[1])) {
-        continue;
+      if (options.clean) {
+        if (gives.some(([a, b]) => a === sorted[0] && b === sorted[1])) {
+          continue;
+        }
       }
 
       gives.push(sorted);
